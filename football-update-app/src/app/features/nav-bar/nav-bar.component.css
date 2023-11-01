@@ -1,12 +1,19 @@
+.nav-bar {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
 li {
+  padding: 10px;
   display: inline;
 }
 
 a {
-  padding: 8px;
+  padding: 10px;
   background-color: #b8f9ff;
 }
 
-.active, li a:hover {
+.active,
+li a:hover {
   background-color: #8aa0ff;
 }
