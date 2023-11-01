@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, finalize, map, takeUntil, tap } from 'rxjs';
 import { Standing } from 'src/app/models/standing.model';
 import { FootballStatsService } from 'src/app/services/football-stats.service';
 
@@ -10,33 +11,42 @@ import { FootballStatsService } from 'src/app/services/football-stats.service';
 })
 export class StandingsComponent implements OnInit, OnDestroy {
   currentYear = new Date();
-  standingData = new Array<Standing>();
+  standingData:Standing[] = [];
   private readonly destroy$ = new Subject<void>();
+  loading = false;
 
-  constructor(private readonly footballStatsService: FootballStatsService) {}
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly footballStatsService: FootballStatsService
+  ) {}
 
   ngOnInit(): void {
-    /*
-  england: 39
-  spain: 140
-  germany: 78
-  italy: 135
-  France: 61
-  */
+    this.route.params.subscribe((param) => {
+      this.getStadingData(param['id']);
+    });
+  }
 
-    if (localStorage.getItem('39')) {
-      this.standingData = JSON.parse(localStorage.getItem('39') as string)[0];
+  private getStadingData(id: string) {
+    if (localStorage.getItem(id)) {
+      this.standingData = JSON.parse(localStorage.getItem(id) as string);
     } else {
+      this.loading = true;
       this.footballStatsService
-        .getLeagueStandings(39, this.currentYear.getFullYear())
-        .pipe(takeUntil(this.destroy$))
+        .getLeagueStandings(+id, this.currentYear.getFullYear())
+        .pipe(
+          map((res) => {
+            return res.response[0].league.standings[0] as unknown as Standing[];
+          }),
+          tap((res) => {
+            localStorage.setItem(id, JSON.stringify(res));
+          }),
+          finalize(() => (this.loading = false)),
+          takeUntil(this.destroy$)
+        )
         .subscribe((res) => {
-          this.standingData = res.response[0].league.standings;
-          localStorage.setItem('39', JSON.stringify(this.standingData));
+          this.standingData = res;
         });
     }
-
-    console.log(this.standingData);
   }
 
   ngOnDestroy(): void {

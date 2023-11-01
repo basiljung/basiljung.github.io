@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './features/nav-bar/nav-bar.component';
-import { StandingsComponent } from './features/standings/standings.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StandingsComponent } from './features/standings/standings.component';
 
 @NgModule({
   declarations: [

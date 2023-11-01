@@ -1,6 +1,9 @@
 <ul class="nav-bar">
   <li *ngFor="let item of countries">
-    <a [ngClass]="{ active: item.active }" [id]="item.countryName + 'Select'"
+    <a
+      [ngClass]="{ active: item.active }"
+      [id]="item.countryName + 'Select'"
+      (click)="this.onLeagueSelect(item.id)"
       >{{ item.countryName | titlecase }}
     </a>
   </li>
