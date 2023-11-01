@@ -10,7 +10,7 @@ import { FootballStatsService } from 'src/app/services/football-stats.service';
 })
 export class StandingsComponent implements OnInit, OnDestroy {
   currentYear = new Date();
-  standingData = new Array<Standing[]>();
+  standingData = new Array<Standing>();
   private readonly destroy$ = new Subject<void>();
 
   constructor(private readonly footballStatsService: FootballStatsService) {}
@@ -35,6 +35,8 @@ export class StandingsComponent implements OnInit, OnDestroy {
           localStorage.setItem('39', JSON.stringify(this.standingData));
         });
     }
+
+    console.log(this.standingData);
   }
 
   ngOnDestroy(): void {

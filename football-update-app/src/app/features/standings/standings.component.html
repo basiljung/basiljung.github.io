@@ -1,1 +1,42 @@
-<p>standings works!</p>
+<table style="width: 100%">
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Name</th>
+    <th>Games</th>
+    <th>W</th>
+    <th>L</th>
+    <th>D</th>
+    <th>Goal Difference</th>
+    <th>Points</th>
+  </tr>
+  <tr *ngFor="let item of standingData">
+    <td>
+      {{ item.rank }}
+    </td>
+    <td>
+      <img alt="no image" style="width: 20px" [src]="item.team.logo" />
+    </td>
+    <td>
+      {{ item.team.name }}
+    </td>
+    <td>
+      {{ item.all.played }}
+    </td>
+    <td>
+      {{ item.all.win }}
+    </td>
+    <td>
+      {{ item.all.lose }}
+    </td>
+    <td>
+      {{ item.all.draw }}
+    </td>
+    <td>
+      {{ item.goalsDiff }}
+    </td>
+    <td>
+      {{ item.points }}
+    </td>
+  </tr>
+</table>

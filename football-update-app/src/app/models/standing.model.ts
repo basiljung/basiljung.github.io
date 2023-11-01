@@ -28,7 +28,7 @@ export interface League {
   logo: string;
   flag: string;
   season: number;
-  standings: Array<Standing[]>;
+  standings: Array<Standing>;
 }
 
 export enum Name {
