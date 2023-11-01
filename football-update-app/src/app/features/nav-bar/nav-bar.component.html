@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let item of countries">
+    <a
+      [ngClass]="{ active: item.active }"
+      [id]="item.countryName + 'Select'"
+      >{{ item.countryName | titlecase }} </a
+    >
+  </li>
+</ul>

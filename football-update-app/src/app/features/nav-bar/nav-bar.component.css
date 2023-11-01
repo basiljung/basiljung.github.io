@@ -1,0 +1,12 @@
+li {
+  display: inline;
+}
+
+a {
+  padding: 8px;
+  background-color: #b8f9ff;
+}
+
+.active, li a:hover {
+  background-color: #8aa0ff;
+}
