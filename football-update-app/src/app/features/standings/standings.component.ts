@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, finalize, map, takeUntil, tap } from 'rxjs';
 import { Standing } from 'src/app/models/standing.model';
 import { FootballStatsService } from 'src/app/services/football-stats.service';
@@ -11,13 +11,14 @@ import { FootballStatsService } from 'src/app/services/football-stats.service';
 })
 export class StandingsComponent implements OnInit, OnDestroy {
   currentYear = new Date();
-  standingData:Standing[] = [];
+  standingData: Standing[] = [];
   private readonly destroy$ = new Subject<void>();
   loading = false;
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly footballStatsService: FootballStatsService
+    private readonly footballStatsService: FootballStatsService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +48,11 @@ export class StandingsComponent implements OnInit, OnDestroy {
           this.standingData = res;
         });
     }
+  }
+
+  openDetailPage() {
+    //todo teamId
+    this.router.navigate(['details', 12]);
   }
 
   ngOnDestroy(): void {

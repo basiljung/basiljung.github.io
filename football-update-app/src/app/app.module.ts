@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './features/nav-bar/nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StandingsComponent } from './features/standings/standings.component';
+import { TeamDetailsComponent } from './features/team-details/team-details.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { StandingsComponent } from './features/standings/standings.component';
     HomeComponent,
     NavBarComponent,
     StandingsComponent,
+    TeamDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
