@@ -30,4 +30,19 @@ export class FootballStatsService {
       }
     );
   }
+
+  getLeagueFixtures(team: number, season: number, last = 10): Observable<any> {
+    const headers = new HttpHeaders({
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+      'x-rapidapi-key': this.apiKey,
+    });
+    return this.http.get<any>('https://v3.football.api-sports.io/fixtures', {
+      headers,
+      params: {
+        team,
+        season,
+        last,
+      },
+    });
+  }
 }

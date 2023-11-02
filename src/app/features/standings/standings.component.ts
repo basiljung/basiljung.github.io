@@ -14,6 +14,7 @@ export class StandingsComponent implements OnInit, OnDestroy {
   standingData: Standing[] = [];
   private readonly destroy$ = new Subject<void>();
   loading = false;
+  leagueId!: string;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -23,7 +24,8 @@ export class StandingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      this.getStadingData(param['id']);
+      this.leagueId = param['id'];
+      this.getStadingData(this.leagueId);
     });
   }
 
@@ -50,9 +52,10 @@ export class StandingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDetailPage() {
-    //todo teamId
-    this.router.navigate(['details', 12]);
+  openDetailPage(teamId: number) {
+    this.router.navigate(['details', teamId], {
+      queryParams: { leagueId: this.leagueId },
+    });
   }
 
   ngOnDestroy(): void {

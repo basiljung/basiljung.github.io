@@ -17,7 +17,7 @@
     <td>
       <img alt="no image" style="width: 20px" [src]="item.team.logo" />
     </td>
-    <td class="detailLink" style="cursor: pointer" (click)="openDetailPage()">
+    <td class="detailLink" (click)="openDetailPage(item.team.id)">
       {{ item.team.name }}
     </td>
     <td>
