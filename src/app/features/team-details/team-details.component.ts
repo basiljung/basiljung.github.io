@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, finalize, map, takeUntil, tap } from 'rxjs';
+import { Subject, finalize, map, takeUntil } from 'rxjs';
 import { FootballStatsService } from 'src/app/services/football-stats.service';
+import { Response } from 'src/app/models/fixtures.model';
 
 @Component({
   selector: 'app-team-details',
@@ -11,8 +12,8 @@ import { FootballStatsService } from 'src/app/services/football-stats.service';
 export class TeamDetailsComponent implements OnInit, OnDestroy {
   currentYear = new Date();
   teamId!: number;
-  leagueId!: number;
-  fixtureData: any[] = [];
+  leagueId: number | undefined;
+  fixtureData: Response[] = [];
   loading = false;
   private readonly destroy$ = new Subject<void>();
 
@@ -46,7 +47,9 @@ export class TeamDetailsComponent implements OnInit, OnDestroy {
   }
 
   returnBack() {
-    this.router.navigate(['league', this.leagueId]);
+    this.leagueId
+      ? this.router.navigate(['league', this.leagueId])
+      : this.router.navigate(['']);
   }
 
   ngOnDestroy(): void {
