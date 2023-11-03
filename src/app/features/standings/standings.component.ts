@@ -37,17 +37,20 @@ export class StandingsComponent implements OnInit, OnDestroy {
       this.footballStatsService
         .getLeagueStandings(+id, this.currentYear.getFullYear())
         .pipe(
-          map((res) => {
-            return res.response[0].league.standings[0] as unknown as Standing[];
-          }),
-          tap((res) => {
-            localStorage.setItem(id, JSON.stringify(res));
-          }),
           finalize(() => (this.loading = false)),
           takeUntil(this.destroy$)
         )
-        .subscribe((res) => {
-          this.standingData = res;
+        .subscribe({
+          next: (res) => {
+            this.standingData = res.response[0]?.league
+              .standings[0] as unknown as Standing[];
+            if (this.standingData) {
+              localStorage.setItem(id, JSON.stringify(this.standingData));
+            }
+          },
+          error: () => {
+            this.router.navigate(['']);
+          },
         });
     }
   }

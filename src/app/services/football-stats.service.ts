@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { StandingLeagueData } from '../models/standing.model';
+import { FixtureLeagueData } from '../models/fixtures.model';
 
 @Injectable({
   providedIn: 'root',
@@ -31,18 +32,25 @@ export class FootballStatsService {
     );
   }
 
-  getLeagueFixtures(team: number, season: number, last = 10): Observable<any> {
+  getLeagueFixtures(
+    team: number,
+    season: number,
+    last = 10
+  ): Observable<FixtureLeagueData> {
     const headers = new HttpHeaders({
       'x-rapidapi-host': 'v3.football.api-sports.io',
       'x-rapidapi-key': this.apiKey,
     });
-    return this.http.get<any>('https://v3.football.api-sports.io/fixtures', {
-      headers,
-      params: {
-        team,
-        season,
-        last,
-      },
-    });
+    return this.http.get<FixtureLeagueData>(
+      'https://v3.football.api-sports.io/fixtures',
+      {
+        headers,
+        params: {
+          team,
+          season,
+          last,
+        },
+      }
+    );
   }
 }

@@ -33,6 +33,10 @@ export interface League {
 
 export enum Name {
   PremierLeague = 'Premier League',
+  SerieA = 'Serie A',
+  LaLiga = 'La Liga',
+  Bundesliga = 'Bundesliga',
+  Ligue1 = 'Ligue 1'
 }
 
 export interface Standing {

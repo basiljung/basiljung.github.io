@@ -1,0 +1,22 @@
+.fixtureTable {
+  width: 100%;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.fixture {
+  width: 30%;
+  margin: auto;
+}
+
+
+.backBtn {
+  margin: 10px;
+  width: 30%;
+  background-color: blue;
+  color: white;
+}
+
+
+
+
