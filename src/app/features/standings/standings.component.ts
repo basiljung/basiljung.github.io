@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, finalize, map, takeUntil, tap } from 'rxjs';
+import { Subject, finalize, takeUntil} from 'rxjs';
 import { Standing } from 'src/app/models/standing.model';
 import { FootballStatsService } from 'src/app/services/football-stats.service';
 

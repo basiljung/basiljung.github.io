@@ -25,7 +25,12 @@
       </td>
     </tr>
   </table>
-  <ng-template #noContent>no content available</ng-template>
+  <ng-template #noContent
+    ><p>content not available or no requests left</p>
+    <span style="font-style: italic">
+      (10 requests per minute and 100 requests per day)</span
+    >
+  </ng-template>
 
   <button class="backBtn" (click)="returnBack()">Back</button>
 </div>

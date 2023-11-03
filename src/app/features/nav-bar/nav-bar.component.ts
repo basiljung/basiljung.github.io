@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css'],
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
   countries = [
     { countryName: 'england', id: 39, active: false },
     { countryName: 'spain', id: 140, active: false },
@@ -16,6 +16,12 @@ export class NavBarComponent {
   ];
 
   constructor(private readonly router: Router) {}
+
+  ngOnInit(): void {
+    this.countries.forEach((item) => {
+      localStorage.removeItem(item.id.toString());
+    });
+  }
 
   onLeagueSelect(id: number) {
     this.countries.map((element) => {
