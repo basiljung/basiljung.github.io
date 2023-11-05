@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## About the Project
 
-A small football (soccer) updates application that displays the results from the top 5 European leagues.
+A small football updates app that displays the results from the top 5 european leagues,
 
 - Premier League
 - Serie A
@@ -16,8 +16,7 @@ A small football (soccer) updates application that displays the results from the
 
 ### API
 
-The API has a limit of 10 requests per minute and 100 requests per day
-Because of that the app stores, standings in local storage. If you want to be sure to have the newest data, reload the page.
+The API has a limit of 10 requests per minute and 100 requests per day,because of that the app stores, standings in local storage. If you want to be sure to have the newest data, reload the page.
 
 ## Contact
 
