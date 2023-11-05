@@ -2,14 +2,13 @@
   display: flex;
   justify-content: center;
   list-style: none;
-  padding: 0;
 }
 .nav-bar li {
   margin: 0.5rem;
 }
 
 a {
-  padding: 10px;
+  padding: 6px;
   background-color: burlywood;
   cursor: pointer;
 }
